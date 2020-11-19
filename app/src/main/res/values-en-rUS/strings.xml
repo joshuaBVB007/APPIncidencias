@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Class_M8</string>
-    <string name="user_name">Username</string>
+    <string name="app_name">Clase_M8</string>
+    <string name="usuario">Username</string>
     <string name="contraseña">Password</string>
-    <string name="registrar">Log in</string>
+    <string name="registrar">Log In</string>
     <string name="anadir_incidencia">Add Event</string>
-    <string name="listar_incidencia">Show Events</string>
+    <string name="listar_incidencia">List Events</string>
     <string name="eliminar_incidencia">Delete Events</string>
-    <string name="contenido_incidencia">Insert Event</string>
+    <string name="contenido_incidencia">Content Event</string>
     <string name="guardar">Save</string>
     <string name="ayuda">Help</string>
     <string name="vacio">Registry Deleted</string>
+    <string name="nuevo_dioma">Change Language</string>
 </resources>
