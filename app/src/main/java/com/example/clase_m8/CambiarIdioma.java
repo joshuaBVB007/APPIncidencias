@@ -1,6 +1,7 @@
 package com.example.clase_m8;
 
-import android.app.Application;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ import android.widget.Button;
 import java.util.Locale;
 
 public class CambiarIdioma extends Fragment {
-    Configuration configuracion;
     public CambiarIdioma() {
         // Required empty public constructor
     }
@@ -25,42 +26,44 @@ public class CambiarIdioma extends Fragment {
                              Bundle savedInstanceState) {
         View V=inflater.inflate(R.layout.fragment_cambiar_idioma, container, false);
 
-        Button uno=V.findViewById(R.id.change);
+        Button uno=V.findViewById(R.id.btn_idioma_ingles);
+        Button dos=V.findViewById(R.id.btn_idioma_catalan);
 
-        configuracion=new Configuration((getResources().getConfiguration()));
+
 
         uno.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Switch to Spanish
-                Locale locale = new Locale("es");
-                Locale.setDefault( locale );
+
+                String languageToLoad  = "en"; // your language
+                Locale locale = new Locale(languageToLoad);
+                Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-
-                Locale locale2 = new Locale("en");
-                Locale.setDefault( locale2 );
-                Configuration config2 = new Configuration();
-                config.locale = locale2;
-                getResources().updateConfiguration(configuracion, getResources().getDisplayMetrics());
+                getContext().getResources().updateConfiguration(config,
+                        getContext().getResources().getDisplayMetrics());
+                //System.exit(0);
 
 
-                refresh();
+            }
+        });
+
+        dos.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //ESTO FUNCIONA PERO PROBAREMOS OTRAS COSAS
+                String languageToLoad  = "ca"; // your language
+                Locale locale = new Locale(languageToLoad);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getContext().getResources().updateConfiguration(config,
+                        getContext().getResources().getDisplayMetrics());
+
 
             }
         });
 
 
         return V;
-    }
-
-    public void refresh(){
-        Fragment frSettings = new CambiarIdioma();
-
-        FragmentManager menuManager = getFragmentManager();
-        FragmentTransaction menuTransaction = menuManager.beginTransaction();
-
-        menuTransaction.replace(R.id.contenedor, frSettings);
-        menuTransaction.commit();
     }
 
 }

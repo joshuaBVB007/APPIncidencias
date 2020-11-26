@@ -12,4 +12,11 @@
     <string name="ayuda">Help</string>
     <string name="vacio">Registry Deleted</string>
     <string name="nuevo_dioma">Change Language</string>
+    <string name="Ingles">English</string>
+    <string name="Cat">Catalan</string>
+
+
+    <!--Action Bar-->
+    <string name="ingles">English</string>
+    <string name="espanol">Spanish</string>
 </resources>

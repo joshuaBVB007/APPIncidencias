@@ -12,4 +12,10 @@
     <string name="ayuda">Ajuda</string>
     <string name="vacio">esdeveniment eliminat</string>
     <string name="nuevo_dioma">canviar llenguatge</string>
+    <string name="Ingles">Anglès</string>
+    <string name="Cat">Catalàn</string>
+
+    <!--Action Bar-->
+    <string name="ingles">Àngles</string>
+    <string name="espanol">Espanyol</string>
 </resources>

@@ -12,11 +12,21 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/change"
+            android:id="@+id/btn_idioma_catalan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:hint="@string/Cat"
+            app:layout_constraintBottom_toTopOf="@+id/btn_idioma_ingles"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_idioma_ingles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="192dp"
+            android:hint="@string/Ingles"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

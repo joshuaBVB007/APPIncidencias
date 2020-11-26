@@ -2,8 +2,10 @@ package com.example.clase_m8;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.clase_m8.db.IncidenciaBDHelper;
 

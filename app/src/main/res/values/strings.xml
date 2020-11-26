@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Clase_M8</string>
     <string name="usuario">Nombre de usuario</string>
@@ -11,5 +12,12 @@
     <string name="ayuda">Ayuda</string>
     <string name="vacio">Registro eliminado</string>
     <string name="nuevo_dioma">Cambiar language</string>
+    <string name="Ingles">Inglés</string>
+    <string name="Cat">Catalàn</string>
+
+    <!--Action Bar-->
+    <string name="ingles">Inglés</string>
+    <string name="espanol">Español</string>
+
 
 </resources>
