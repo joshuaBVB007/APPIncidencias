@@ -31,15 +31,9 @@ public class Eliminar_Incidencias extends Fragment {
         dbhelper=((Menu_principal)getActivity()).dbhelper;
         db=((Menu_principal)getActivity()).db;
 
-        borrar_todos_registros=V.findViewById(R.id.borrar_todos);
 
+        mostrardialogo();
 
-        borrar_todos_registros.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrardialogo();
-            }
-        });
 
 
 
@@ -58,6 +52,7 @@ public class Eliminar_Incidencias extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbhelper.eliminarIncidencias(db,dbhelper);
+                        
                         Toast.makeText(getContext(),"Incidencias eliminadas",Toast.LENGTH_SHORT).show();
                     }
                 })

@@ -10,10 +10,14 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.clase_m8.ListarIncidencias;
 import com.example.clase_m8.Recursos.Incidencia;
 import com.example.clase_m8.db.IncidenciaConstantesTabla.*;
 
 import java.util.ArrayList;
+
+import static com.example.clase_m8.db.IncidenciaConstantesTabla.IncidenciaEntry.DATABASE_NAME;
+import static com.example.clase_m8.db.IncidenciaConstantesTabla.IncidenciaEntry.DATABASE_VERSION;
 
 public class IncidenciaBDHelper extends SQLiteOpenHelper {
     //Esta es la tuya marta
@@ -31,7 +35,7 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
 
 
     public IncidenciaBDHelper(@Nullable Context context) {
-        super(context, "Incidencias.db", null, 1);
+        super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
 
@@ -64,14 +68,18 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
     public static ArrayList<Incidencia> getAllIncidencies(SQLiteDatabase db){
         ArrayList<Incidencia> listIncidencies = new ArrayList<Incidencia>();
         //Selection all registers from the table Incidencia using Cursor
-        Cursor cursor = db.query(IncidenciaEntry.TABLE_NAME,null,null,null,null,null,null);
-        //Iteration on the cursor results and fill the array
-        while (cursor.moveToNext()) {
-            String inc = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_TITLE));
-            String inc2 = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_PRIORITY));
-            Incidencia incidencia = new Incidencia(inc,inc2);
-            listIncidencies.add(incidencia);
+        Cursor cursor = db.rawQuery("select * from "+IncidenciaEntry.TABLE_NAME,null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while (cursor.moveToNext()) {
+                String inc = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_TITLE));
+                String inc2 = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_PRIORITY));
+                Incidencia incidencia = new Incidencia(inc,inc2);
+                listIncidencies.add(incidencia);
+            }
         }
+
         cursor.close();
         return listIncidencies;
     }
@@ -79,8 +87,6 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
     public void eliminarIncidencias(SQLiteDatabase db, SQLiteOpenHelper helper) {
         db = helper.getWritableDatabase();
         db.delete(IncidenciaEntry.TABLE_NAME,null,null);
-
-
     }
 
 
