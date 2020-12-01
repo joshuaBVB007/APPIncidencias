@@ -32,7 +32,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.t1.setText(lista.get(position).contenido);
-        holder.t2.setText(lista.get(position).nivel_peligro);
+        holder.t2.setText(lista.get(position).prioridad);
+        holder.t3.setText(lista.get(position).dimeFecha());
+        holder.t4.setText(lista.get(position).desc);
     }
 
     @Override
@@ -43,10 +45,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView t1;
         TextView t2;
+        TextView t3;
+        TextView t4;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
            t1=itemView.findViewById(R.id.tv1);
            t2=itemView.findViewById(R.id.tv2);
+           t3=itemView.findViewById(R.id.tv3_fecha);
+           t4=itemView.findViewById(R.id.tv4);
         }
     }
 

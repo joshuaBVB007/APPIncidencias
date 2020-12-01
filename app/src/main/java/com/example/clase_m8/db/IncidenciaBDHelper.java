@@ -10,7 +10,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.clase_m8.ListarIncidencias;
 import com.example.clase_m8.Recursos.Incidencia;
 import com.example.clase_m8.db.IncidenciaConstantesTabla.*;
 
@@ -23,9 +22,10 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + IncidenciaEntry.TABLE_NAME +
             "(" + IncidenciaEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             IncidenciaEntry.TABLE_NAME_TITLE+" TEXT,"+
-            IncidenciaEntry.TABLE_NAME_PRIORITY+" TEXT"
+            IncidenciaEntry.TABLE_NAME_PRIORITY+" TEXT,"+
+            IncidenciaEntry.TABLE_NAME_DATE + " TEXT,"+
+            IncidenciaEntry.TABLE_NAME_DESCRIPTION + " TEXT)";
 
-            +")";
 
 
     public IncidenciaBDHelper(@Nullable Context context) {
@@ -46,8 +46,9 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         if(db.isOpen()){
             ContentValues contenido=new ContentValues();
             contenido.put(IncidenciaEntry.TABLE_NAME_TITLE,miincidencia.getContenido());
-            contenido.put(IncidenciaEntry.TABLE_NAME_PRIORITY,miincidencia.getNivel_peligro());
-
+            contenido.put(IncidenciaEntry.TABLE_NAME_PRIORITY,miincidencia.getPrioridad());
+            contenido.put(IncidenciaEntry.TABLE_NAME_DATE,miincidencia.dimeFecha());
+            contenido.put(IncidenciaEntry.TABLE_NAME_DESCRIPTION,miincidencia.getDesc());
             try {
                 db.insert(IncidenciaEntry.TABLE_NAME,null,contenido);
             }catch (SQLException e){
@@ -69,8 +70,8 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
                 //String inc = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_TITLE));
                 //String inc2 = cursor.getString(cursor.getColumnIndex(IncidenciaEntry.TABLE_NAME_PRIORITY));
-                Incidencia incidencia = new Incidencia(cursor.getString(1),cursor.getString(2));
-                listIncidencies.add(incidencia);
+                //Incidencia incidencia = new Incidencia(cursor.getString(1),cursor.getString(2,cursor.getString(3),cursor.getString(4)));
+                //listIncidencies.add(incidencia);
 
             }
         }

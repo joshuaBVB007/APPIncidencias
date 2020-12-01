@@ -19,10 +19,13 @@ import android.widget.Toast;
 import com.example.clase_m8.Recursos.Incidencia;
 import com.example.clase_m8.db.IncidenciaBDHelper;
 
+import java.text.DateFormat;
+
 
 public class IngresoIncidencia extends Fragment {
     View V;
     EditText info_incidencia;
+    EditText Desc_incidencia;
     Button Boton_incidencia;
     Spinner spinner;
     public IngresoIncidencia() {
@@ -36,21 +39,24 @@ public class IngresoIncidencia extends Fragment {
 
         info_incidencia=(EditText)V.findViewById(R.id.ed_ingreso);
         Boton_incidencia=(Button)V.findViewById(R.id.b_ingreso);
-
+        Desc_incidencia=(EditText)V.findViewById(R.id.desc);
         String nivel [] ={"Alta","Media","Baja"};
 
         spinner=(Spinner)V.findViewById(R.id.spinner_1);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,nivel);
         spinner.setAdapter(adapter);
 
+
         Boton_incidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String get_info_incidencia=info_incidencia.getText().toString();
                 String get_spinner=spinner.getSelectedItem().toString();
-                //creamos la incidencia
-                Incidencia miincidencia=new Incidencia(get_info_incidencia,get_spinner);
+                String get_Desc_incidencia=Desc_incidencia.getText().toString();
 
+                Incidencia miincidencia=new Incidencia(get_info_incidencia,get_spinner,get_Desc_incidencia);
+                miincidencia.setFecha(System.currentTimeMillis() / 1000);
 
                 IncidenciaBDHelper dbhelper=((Menu_principal)getActivity()).dbhelper;
                 SQLiteDatabase db=((Menu_principal)getActivity()).db;

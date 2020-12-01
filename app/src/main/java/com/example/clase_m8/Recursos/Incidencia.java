@@ -1,13 +1,20 @@
 package com.example.clase_m8.Recursos;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class Incidencia {
     public String contenido;
-    public String nivel_peligro;
+    public String prioridad;
+    public String desc;
+    public long fecha;
 
 
-    public Incidencia(String contenido,String nivel_peligro) {
+    public Incidencia(String contenido,String prioridad,String desc) {
         this.contenido = contenido;
-        this.nivel_peligro=nivel_peligro;
+        this.prioridad =prioridad;
+        this.desc=desc;
     }
 
     public String getContenido() {
@@ -18,12 +25,35 @@ public class Incidencia {
         this.contenido = contenido;
     }
 
-    public String getNivel_peligro() {
-        return nivel_peligro;
+    public String getPrioridad() {
+        return prioridad;
     }
 
-    public void setNivel_peligro(String nivel_peligro) {
-        this.nivel_peligro = nivel_peligro;
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public long getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(long fecha) {
+        this.fecha = fecha;
+    }
+
+    public String dimeFecha(){
+        Date actual_hora=new java.util.Date(this.fecha*1000);
+        String hora=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(actual_hora);
+        return hora;
+    }
+
 
 }
