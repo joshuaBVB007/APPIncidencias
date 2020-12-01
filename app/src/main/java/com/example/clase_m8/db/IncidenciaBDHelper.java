@@ -11,7 +11,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.clase_m8.Recursos.Incidencia;
-import com.example.clase_m8.db.IncidenciaContract.*;
+import com.example.clase_m8.db.IncidenciaConstantesTabla.*;
 
 import java.util.ArrayList;
 
@@ -34,14 +34,14 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         super(context, "Incidencias.db", null, 1);
     }
 
+
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) {//SE CREA LA TABLA AL INICIAR ESTA ACTIVIY
         db.execSQL(SQL_CREATE_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
     }
 
     public void insertIncidencia(SQLiteDatabase db, Incidencia miincidencia) {
@@ -53,13 +53,14 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
             try {
                 db.insert(IncidenciaEntry.TABLE_NAME,null,contenido);
             }catch (SQLException e){
-                Log.i("prova","insert ko");
+                Log.i("prova","insert not happened");
             }
         }else{
             Log.i("prova","database is closed");
         }
     }
 
+    //EL METODO QUE FALLA ES ESTE
     public static ArrayList<Incidencia> getAllIncidencies(SQLiteDatabase db){
         ArrayList<Incidencia> listIncidencies = new ArrayList<Incidencia>();
         //Selection all registers from the table Incidencia using Cursor
