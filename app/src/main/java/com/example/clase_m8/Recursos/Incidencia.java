@@ -1,5 +1,9 @@
 package com.example.clase_m8.Recursos;
 
+import android.text.format.DateFormat;
+import android.util.Log;
+
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,10 +54,15 @@ public class Incidencia {
     }
 
     public String dimeFecha(){//ESTE METODO LO USAMOS EN EL RECYCLER_ADAPTER
-        Date actual_hora=new java.util.Date();
-        SimpleDateFormat hora=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String hora_definitiva=hora.format(actual_hora);
-        return hora_definitiva;
+        Long fecha = this.getFecha()*1000;
+        Log.i("test", "" + fecha);
+
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String hora_definitiva=format.format(fecha);
+
+        String dateString = DateFormat.format("MM/dd/yyyy HH:mm:ss", new Date(fecha)).toString();
+
+        return dateString;
     }
 
 

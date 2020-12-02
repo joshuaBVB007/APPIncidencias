@@ -31,10 +31,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.t1.setText(lista.get(position).contenido);
-        holder.t2.setText(lista.get(position).prioridad);
+        holder.t1.setText(lista.get(position).getContenido());
+        holder.t2.setText(lista.get(position).getPrioridad());
         holder.t3.setText(lista.get(position).dimeFecha());
-        holder.t4.setText(lista.get(position).desc);
+        holder.t4.setText(lista.get(position).getDesc());
     }
 
     @Override

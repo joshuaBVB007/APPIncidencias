@@ -70,10 +70,9 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
 
                 Incidencia incidencia = new Incidencia(cursor.getString(1),cursor.getString(2),cursor.getString(4));
+               //una gilipollés que hice
                 incidencia.setFecha(cursor.getLong(3));
                 listIncidencies.add(incidencia);
-                //
-
             }
         }
 
