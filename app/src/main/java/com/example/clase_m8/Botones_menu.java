@@ -74,7 +74,7 @@ public class Botones_menu extends Fragment {
         B4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment vista= new CambiarIdioma();
+                Fragment vista= new ListarIncidencias();
                 FragmentManager mimanejador=getFragmentManager();
                 FragmentTransaction mitransaccion=mimanejador.beginTransaction();
                 mitransaccion.replace(R.id.contenedor,vista);

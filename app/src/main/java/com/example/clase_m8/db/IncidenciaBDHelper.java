@@ -88,5 +88,10 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         db.delete(IncidenciaEntry.TABLE_NAME,null,null);
     }
 
+    public void modificaStatus(SQLiteDatabase db, SQLiteOpenHelper helper,int id){
+        db=helper.getWritableDatabase();
+       //SOLUCION AL ASUNTO ES HACER UNA ACTUALIZACION A LA BASE DE DATOS Y REFRESCAR
+    }
+
 
 }

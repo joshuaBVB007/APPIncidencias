@@ -3,6 +3,8 @@ package com.example.clase_m8.Recursos;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.example.clase_m8.Vista_Enfocada;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;

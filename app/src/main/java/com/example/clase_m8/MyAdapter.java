@@ -1,10 +1,13 @@
 package com.example.clase_m8;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +35,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.titulo_Incidencia.setText(lista.get(position).getContenido());
         holder.contenido_Incidencia.setText(lista.get(position).getPrioridad());
         holder.fecha_Incidencia.setText(lista.get(position).dimeFecha());
         holder.descripcion_Incidencia.setText(lista.get(position).getDesc());
+        holder.estado_Incidencia.setText(lista.get(position).getEstado());
+
+
+        
         final int id=position;
         holder.contenido_Incidencia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         });
 
+
     }
 
     @Override
@@ -68,12 +76,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView contenido_Incidencia;
         TextView fecha_Incidencia;
         TextView descripcion_Incidencia;
+        TextView estado_Incidencia;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
            titulo_Incidencia =itemView.findViewById(R.id.titulo);
            contenido_Incidencia =itemView.findViewById(R.id.contenido);
            fecha_Incidencia =itemView.findViewById(R.id.fecha);
            descripcion_Incidencia =itemView.findViewById(R.id.descripcion);
+           estado_Incidencia=itemView.findViewById(R.id.estado);
+
         }
     }
 

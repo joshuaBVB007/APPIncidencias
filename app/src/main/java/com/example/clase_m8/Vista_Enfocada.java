@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.ColorInt;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Vista_Enfocada extends Fragment {
+
     String titulo,prioridad,descripcion,fecha,estado;
 
     @SuppressLint("ResourceType")
@@ -35,16 +38,55 @@ public class Vista_Enfocada extends Fragment {
         TextView prioridad_1=V.findViewById(R.id.tx_prioridad);
         TextView descripcion_1=V.findViewById(R.id.tx_descripcion);
         TextView fecha_1=V.findViewById(R.id.tx_fecha);
-        Button estado_1=V.findViewById(R.id.im_estado);
+        final Button estado_1=V.findViewById(R.id.im_estado);
 
         titulo_1.setText(titulo);
         prioridad_1.setText(prioridad);
         descripcion_1.setText(descripcion);
         fecha_1.setText(fecha);
-        estado_1.setText(estado);
+        estado_1.setText("Pendiente");
 
+            estado_1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   // estado="1";
+                    String cambio=validarEstado(estado);
+                    if(cambio.equals("1")){
+                        estado_1.setText("Asignada");
+                        estado_1.setBackgroundColor(Color.GREEN);
+                        estado="1";
+                    }else if(cambio.equals("2")){
+                        estado_1.setText("Realizada");
+                        estado_1.setBackgroundColor(Color.RED);
+                        estado="2";
+                    }else if(cambio.equals("3")){
+                        estado_1.setText("Pendiente");
+                        estado_1.setBackgroundColor(Color.CYAN);
+                        estado="0";
+                    }
+                }
+            });
 
 
         return V;
     }
+
+    public String validarEstado(String estado){
+        int numero_estado=Integer.parseInt(estado);
+        String cambio;
+        if(numero_estado==0){
+            numero_estado++;
+            cambio=String.valueOf(numero_estado);
+            return cambio;
+        }else if(numero_estado==1){
+            numero_estado++;
+            cambio=String.valueOf(numero_estado);
+            return cambio;
+        }else{
+            numero_estado++;
+            cambio=String.valueOf(numero_estado);
+            return cambio;
+        }
+    }
+
 }
