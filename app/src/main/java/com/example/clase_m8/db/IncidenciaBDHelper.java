@@ -95,7 +95,7 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(IncidenciaEntry.TABLE_NAME_STATE, estado);
         String codigo=String.valueOf(id);
-        // Which row to update, based on the ID
+
         String selection = IncidenciaEntry.ID+ " LIKE ?";
         //AQUI RADICA EL FALLO YA QUE ME LO SUMA LAS KEYS
         String[] selectionArgs = { codigo };
@@ -105,8 +105,15 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
                 selection,
                 selectionArgs);
         Log.i("actualizacion","update correct");
-
     }
+
+    public static void updateStatus(SQLiteDatabase db, int status, String issueID) {
+        String update = "UPDATE " + IncidenciaEntry.TABLE_NAME + " SET " + IncidenciaEntry.TABLE_NAME_STATE
+                + " = " + status + " WHERE "
+                + IncidenciaEntry.ID + " = " + issueID;
+        db.execSQL(update);
+    }
+
 
 
 }

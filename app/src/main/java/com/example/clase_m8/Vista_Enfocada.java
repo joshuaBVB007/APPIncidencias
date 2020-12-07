@@ -1,6 +1,7 @@
 package com.example.clase_m8;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class Vista_Enfocada extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dbhelper = new IncidenciaBDHelper(getContext());
+        db = dbhelper.getWritableDatabase();
         // Inflate the layout for this fragment
         View V=inflater.inflate(R.layout.fragment_vista__enfocada, container, false);
 
@@ -82,8 +85,6 @@ public class Vista_Enfocada extends Fragment {
                     }
                 }
             });
-
-
         return V;
     }
 
@@ -104,5 +105,4 @@ public class Vista_Enfocada extends Fragment {
             return cambio;
         }
     }
-
 }

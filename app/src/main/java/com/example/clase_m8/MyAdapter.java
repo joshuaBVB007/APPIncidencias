@@ -73,7 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Vista_Enfocada muestra = new Vista_Enfocada();
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("ITEM_ID",lista.get(id).getId());
+                bundle.putInt("ITEM_ID",lista.get(id).id);
                 bundle.putString("ITEM_TITLE", lista.get(id).getContenido());
                 bundle.putString("ITEM_PRIO", lista.get(id).getPrioridad());
                 bundle.putString("ITEM_DESC", lista.get(id).getDesc());
