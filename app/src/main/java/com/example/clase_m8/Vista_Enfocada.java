@@ -1,6 +1,7 @@
 package com.example.clase_m8;
 
 import android.annotation.SuppressLint;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.clase_m8.db.IncidenciaBDHelper;
 
 public class Vista_Enfocada extends Fragment {
-
+    IncidenciaBDHelper dbhelper;
+    SQLiteDatabase db;
     String titulo,prioridad,descripcion,fecha,estado;
+    int id_usuario;
 
     @SuppressLint("ResourceType")
     @Override
@@ -28,6 +35,10 @@ public class Vista_Enfocada extends Fragment {
         // Inflate the layout for this fragment
         View V=inflater.inflate(R.layout.fragment_vista__enfocada, container, false);
 
+        dbhelper=((Menu_principal)getActivity()).dbhelper;
+        db=((Menu_principal)getActivity()).db;
+
+        id_usuario=getArguments().getInt("ITEM_ID");
         titulo=getArguments().getString("ITEM_TITLE");
         prioridad=getArguments().getString("ITEM_PRIO");
         descripcion=getArguments().getString("ITEM_DESC");
@@ -49,20 +60,25 @@ public class Vista_Enfocada extends Fragment {
             estado_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   // estado="1";
                     String cambio=validarEstado(estado);
                     if(cambio.equals("1")){
                         estado_1.setText("Asignada");
                         estado_1.setBackgroundColor(Color.GREEN);
                         estado="1";
+                        Toast.makeText(getContext(),"el estado es:"+estado+" id"+id_usuario,Toast.LENGTH_SHORT).show();
+                        dbhelper.modificaStatus(db,dbhelper,id_usuario,estado);
                     }else if(cambio.equals("2")){
                         estado_1.setText("Realizada");
                         estado_1.setBackgroundColor(Color.RED);
                         estado="2";
-                    }else if(cambio.equals("3")){
+                        Toast.makeText(getContext(),"el estado es:"+estado+" id "+id_usuario,Toast.LENGTH_SHORT).show();
+                        dbhelper.modificaStatus(db,dbhelper,id_usuario,estado);
+                    }else if(!cambio.equals("2") || !cambio.equals("1") ){
                         estado_1.setText("Pendiente");
                         estado_1.setBackgroundColor(Color.CYAN);
                         estado="0";
+                        Toast.makeText(getContext(),"el estado es:"+estado+" id"+id_usuario,Toast.LENGTH_SHORT).show();
+                        dbhelper.modificaStatus(db,dbhelper,id_usuario,estado);
                     }
                 }
             });

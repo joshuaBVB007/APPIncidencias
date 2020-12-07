@@ -54,7 +54,6 @@ public class IngresoIncidencia extends Fragment {
                 String get_info_incidencia=info_incidencia.getText().toString();
                 String get_spinner=spinner.getSelectedItem().toString();
                 String get_Desc_incidencia=Desc_incidencia.getText().toString();
-
                 Incidencia miincidencia=new Incidencia(get_info_incidencia,get_spinner,get_Desc_incidencia);
                 //ESTABLECEMOS LA PROPIEDAD FECHA ABAJO DEL OBJETO INCIDENCIA
                 miincidencia.setFecha(System.currentTimeMillis() / 1000);

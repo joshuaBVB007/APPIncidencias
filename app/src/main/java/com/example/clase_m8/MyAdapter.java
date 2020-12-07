@@ -36,13 +36,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        if(lista!=null){
+            String statusText = "";
+            int color = 0;
+            int textColor = 0;
+
+            if(lista.get(position).getEstado().equals("0")){
+                statusText="Pendiente";
+                color = Color.CYAN;
+                textColor = Color.WHITE;
+            }else if(lista.get(position).getEstado().equals("1")){
+                statusText="Asignada";
+                color = Color.GREEN;
+                textColor = Color.WHITE;
+            }else if(lista.get(position).getEstado().equals("2")){
+                statusText="Hecha";
+                color = Color.RED;
+                textColor = Color.WHITE;
+            }
+            holder.estado_Incidencia.setText(statusText);
+            holder.estado_Incidencia.setBackgroundColor(color);
+            holder.estado_Incidencia.setTextColor(textColor);
+
+        }
+
         holder.titulo_Incidencia.setText(lista.get(position).getContenido());
         holder.contenido_Incidencia.setText(lista.get(position).getPrioridad());
         holder.fecha_Incidencia.setText(lista.get(position).dimeFecha());
         holder.descripcion_Incidencia.setText(lista.get(position).getDesc());
-        holder.estado_Incidencia.setText(lista.get(position).getEstado());
-
-
         
         final int id=position;
         holder.contenido_Incidencia.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Vista_Enfocada muestra = new Vista_Enfocada();
 
                 Bundle bundle = new Bundle();
+                bundle.putInt("ITEM_ID",lista.get(id).getId());
                 bundle.putString("ITEM_TITLE", lista.get(id).getContenido());
                 bundle.putString("ITEM_PRIO", lista.get(id).getPrioridad());
                 bundle.putString("ITEM_DESC", lista.get(id).getDesc());

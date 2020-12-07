@@ -16,12 +16,23 @@ public class Incidencia {
     public String desc;
     public long fecha;
     public int estado;
-
+    public int id;
+    public static int idsiguiente=2;
 
     public Incidencia(String contenido, String prioridad,String desc) {
         this.contenido = contenido;
         this.prioridad =prioridad;
         this.desc=desc;
+        this.id=idsiguiente;
+        idsiguiente++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getContenido() {

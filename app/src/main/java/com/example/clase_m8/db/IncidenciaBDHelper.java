@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -27,7 +28,7 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
             IncidenciaEntry.TABLE_NAME_DESCRIPTION + " TEXT," +
             IncidenciaEntry.TABLE_NAME_STATE+" TEXT)";
 
-
+    //FALLO EN LA CLAVE YA VUELVO
 
     public IncidenciaBDHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null,DATABASE_VERSION);
@@ -61,36 +62,50 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         }
     }
 
-    //EL METODO QUE FALLA ES ESTE
+    //METODO QUE LISTA TODOS LOS DATOS EN EL RECYCLER
     public static ArrayList<Incidencia> getAllIncidencies(SQLiteDatabase db){
         ArrayList<Incidencia> listIncidencies = new ArrayList<Incidencia>();
         //Selection all registers from the table Incidencia using Cursor
         Cursor cursor = db.rawQuery("select * from "+IncidenciaEntry.TABLE_NAME,null);
-
-        if(cursor.getCount()>0){
+        if( cursor.getCount()>0){
             cursor.moveToFirst();
             while (cursor.moveToNext()) {
-
-                Incidencia incidencia = new Incidencia(cursor.getString(1),cursor.getString(2),cursor.getString(4));
-               //una gilipollés que hice
+                Incidencia incidencia = new Incidencia(cursor.getString(0),cursor.getString(2),cursor.getString(4));
                 incidencia.setFecha(cursor.getLong(3));
                 incidencia.setEstado(cursor.getInt(5));
                 listIncidencies.add(incidencia);
             }
+
         }
 
         cursor.close();
         return listIncidencies;
     }
 
+    //METODO PARA ELIMINAR TODAS LAS INCIDENCIA
     public void eliminarIncidencias(SQLiteDatabase db, SQLiteOpenHelper helper) {
         db = helper.getWritableDatabase();
         db.delete(IncidenciaEntry.TABLE_NAME,null,null);
     }
 
-    public void modificaStatus(SQLiteDatabase db, SQLiteOpenHelper helper,int id){
-        db=helper.getWritableDatabase();
-       //SOLUCION AL ASUNTO ES HACER UNA ACTUALIZACION A LA BASE DE DATOS Y REFRESCAR
+    //METODO PARA ACTUALIZAR REGISTROS
+    public void modificaStatus(SQLiteDatabase db, SQLiteOpenHelper helper,int id,String estado){
+        db = helper.getWritableDatabase();
+        //ID ES EL NUEVO VALOR A INSERTAR QUE EQUIVALE PARA ESTE EJEMPLO A "1"
+        ContentValues values = new ContentValues();
+        values.put(IncidenciaEntry.TABLE_NAME_STATE, estado);
+        String codigo=String.valueOf(id);
+        // Which row to update, based on the ID
+        String selection = IncidenciaEntry.ID+ " LIKE ?";
+        //AQUI RADICA EL FALLO YA QUE ME LO SUMA LAS KEYS
+        String[] selectionArgs = { codigo };
+        int count = db.update(
+                IncidenciaEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        Log.i("actualizacion","update correct");
+
     }
 
 
