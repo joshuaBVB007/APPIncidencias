@@ -41,12 +41,12 @@ public class Vista_Enfocada extends Fragment {
         dbhelper=((Menu_principal)getActivity()).dbhelper;
         db=((Menu_principal)getActivity()).db;
 
-        id_usuario=getArguments().getInt("ITEM_ID");
-        titulo=getArguments().getString("ITEM_TITLE");
-        prioridad=getArguments().getString("ITEM_PRIO");
-        descripcion=getArguments().getString("ITEM_DESC");
-        fecha=getArguments().getString("ITEM_DATE");
-        estado=getArguments().getString("ITEM_STATE");
+        id_usuario=getArguments().getInt("ID");
+        titulo=getArguments().getString("TITLE");
+        prioridad=getArguments().getString("PRIORITY");
+        descripcion=getArguments().getString("DESCRIPCION");
+        fecha=getArguments().getString("DATE");
+        estado=getArguments().getString("STATE");
 
         TextView titulo_1=V.findViewById(R.id.tx_titulo);
         TextView prioridad_1=V.findViewById(R.id.tx_prioridad);

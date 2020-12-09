@@ -37,6 +37,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         if(lista!=null){
+
+            /*
+            Hipotesis 1 que los indices del arraylist no sean los mismos del recycler.
+
+            * */
             String statusText = "";
             int color = 0;
             int textColor = 0;
@@ -64,23 +69,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.contenido_Incidencia.setText(lista.get(position).getPrioridad());
         holder.fecha_Incidencia.setText(lista.get(position).dimeFecha());
         holder.descripcion_Incidencia.setText(lista.get(position).getDesc());
+        holder.id.setText(lista.get(position).getId());
         
         final int id=position;
-        holder.contenido_Incidencia.setOnClickListener(new View.OnClickListener() {
+        holder.titulo_Incidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Vista_Enfocada muestra = new Vista_Enfocada();
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("ITEM_ID",lista.get(id).id);
-                bundle.putString("ITEM_TITLE", lista.get(id).getContenido());
-                bundle.putString("ITEM_PRIO", lista.get(id).getPrioridad());
-                bundle.putString("ITEM_DESC", lista.get(id).getDesc());
-                bundle.putString("ITEM_DATE", lista.get(id).dimeFecha());
-                bundle.putString("ITEM_STATE", lista.get(id).getEstado());
+                Bundle paquete = new Bundle();
+                paquete.putInt("ID",lista.get(id).id);
+                paquete.putString("TITLE", lista.get(id).getContenido());
+                paquete.putString("PRIORITY", lista.get(id).getPrioridad());
+                paquete.putString("DESCRIPCION", lista.get(id).getDesc());
+                paquete.putString("DATE", lista.get(id).dimeFecha());
+                paquete.putString("STATE", lista.get(id).getEstado());
 
-                muestra.setArguments(bundle);
+                muestra.setArguments(paquete);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, muestra).addToBackStack(null).commit();
             }
         });
@@ -99,6 +105,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView fecha_Incidencia;
         TextView descripcion_Incidencia;
         TextView estado_Incidencia;
+        TextView id;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,7 +114,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
            fecha_Incidencia =itemView.findViewById(R.id.fecha);
            descripcion_Incidencia =itemView.findViewById(R.id.descripcion);
            estado_Incidencia=itemView.findViewById(R.id.estado);
-
+           id=itemView.findViewById(R.id.id);
         }
     }
 

@@ -17,7 +17,14 @@ public class Incidencia {
     public long fecha;
     public int estado;
     public int id;
-    public static int idsiguiente=2;
+    public static int idsiguiente=1;
+
+    /*
+    1-pueda que el idsiguiente sea el problema
+    2-que el metodo update sume las keys
+
+     */
+
 
     public Incidencia(String contenido, String prioridad,String desc) {
         this.contenido = contenido;
@@ -27,8 +34,9 @@ public class Incidencia {
         idsiguiente++;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+
+        return String.valueOf(id);
     }
 
     public void setId(int id) {

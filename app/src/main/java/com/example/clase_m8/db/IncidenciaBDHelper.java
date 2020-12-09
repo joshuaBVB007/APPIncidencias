@@ -28,12 +28,9 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
             IncidenciaEntry.TABLE_NAME_DESCRIPTION + " TEXT," +
             IncidenciaEntry.TABLE_NAME_STATE+" TEXT)";
 
-    //FALLO EN LA CLAVE YA VUELVO
-
     public IncidenciaBDHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {//SE CREA LA TABLA AL INICIAR ESTA ACTIVIY
@@ -62,17 +59,17 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         }
     }
 
-    //METODO QUE FALLAAAAAAAAAAAA NO EMPIEZA EL CURSOR DESDE CERO
     public static ArrayList<Incidencia> getAllIncidencies(SQLiteDatabase db){
         ArrayList<Incidencia> listIncidencies = new ArrayList<Incidencia>();
         //Selection all registers from the table Incidencia using Cursor
         Cursor cursor = db.rawQuery("select * from "+IncidenciaEntry.TABLE_NAME,null);
         if( cursor.getCount()>0){
-            cursor.moveToFirst();
+            //ID,TITULO.PRIORIDAD,FECHA,DESCRIPCION,ESTADO
             while (cursor.moveToNext()) {
-                Incidencia incidencia = new Incidencia(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+                Incidencia incidencia = new Incidencia(cursor.getString(2),cursor.getString(1),cursor.getString(4));
                 incidencia.setFecha(cursor.getLong(3));
                 incidencia.setEstado(cursor.getInt(5));
+                incidencia.setId(cursor.getInt(0));
                 listIncidencies.add(incidencia);
             }
 
@@ -88,16 +85,13 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         db.delete(IncidenciaEntry.TABLE_NAME,null,null);
     }
 
-    //METODO QUE FALLAAAAAAAAAAAAAAAA!
     public void modificaStatus(SQLiteDatabase db, SQLiteOpenHelper helper,int id,String estado){
         db = helper.getWritableDatabase();
-        //ID ES EL NUEVO VALOR A INSERTAR QUE EQUIVALE PARA ESTE EJEMPLO A "1"
         ContentValues values = new ContentValues();
         values.put(IncidenciaEntry.TABLE_NAME_STATE, estado);
         String codigo=String.valueOf(id);
 
         String selection = IncidenciaEntry.ID+ " LIKE ?";
-        //AQUI RADICA EL FALLO YA QUE ME LO SUMA LAS KEYS
         String[] selectionArgs = { codigo };
         int count = db.update(
                 IncidenciaEntry.TABLE_NAME,
@@ -107,12 +101,6 @@ public class IncidenciaBDHelper extends SQLiteOpenHelper {
         Log.i("actualizacion","update correct");
     }
 
-    /*public static void updateStatus(SQLiteDatabase db, int status, String issueID) {
-        String update = "UPDATE " + IncidenciaEntry.TABLE_NAME + " SET " + IncidenciaEntry.TABLE_NAME_STATE
-                + " = " + status + " WHERE "
-                + IncidenciaEntry.ID + " = " + issueID;
-        db.execSQL(update);
-    }*/
 
 
 
