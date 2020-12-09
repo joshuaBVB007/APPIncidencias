@@ -3,9 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/cat"
+        android:title="@string/Cat" />
+
+    <item
         android:id="@+id/ingles"
         android:title="@string/ingles" />
     <item
         android:id="@+id/espanol"
         android:title="@string/espanol" />
+
 </menu>

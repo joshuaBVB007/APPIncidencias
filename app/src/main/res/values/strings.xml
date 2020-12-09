@@ -22,7 +22,8 @@
     <string name="medias">Medias</string>
     <string name="bajas">Bajas</string>
 
-
+    <string name="buscar">Buscar</string>
+    <string name="eli_especifica">Eliminar</string>
 
 
 </resources>

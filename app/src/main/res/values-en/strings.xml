@@ -19,7 +19,11 @@
     <!--Action Bar-->
     <string name="ingles">English</string>
     <string name="espanol">Spanish</string>
-    <string name="altas">Altas</string>
-    <string name="medias">Medias</string>
-    <string name="bajas">Bajas</string>
+    <string name="altas">High</string>
+    <string name="medias">Medium</string>
+    <string name="bajas">Low</string>
+
+    <string name="buscar">Search</string>
+    <string name="eli_especifica">Delete</string>
+
 </resources>

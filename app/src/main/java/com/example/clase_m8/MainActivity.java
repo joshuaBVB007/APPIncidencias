@@ -77,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
             getResources().updateConfiguration(config,
                     getResources().getDisplayMetrics());
             recreate();
+        }else if(id==R.id.cat){
+            Toast.makeText(this,"Catalán has seleccionado",Toast.LENGTH_SHORT).show();
+            String languageToLoad  = "ca"; // your language
+            Locale locale = new Locale(languageToLoad);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getResources().updateConfiguration(config,
+                    getResources().getDisplayMetrics());
+            recreate();
         }
         return super.onOptionsItemSelected(item);
     }

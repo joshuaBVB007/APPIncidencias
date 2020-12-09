@@ -65,12 +65,12 @@
 
         <Button
             android:id="@+id/del"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Eliminar Inci"
+            android:layout_width="93dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="36dp"
+            android:hint="@string/eli_especifica"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/im_estado" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,10 @@
     <!--Action Bar-->
     <string name="ingles">Àngles</string>
     <string name="espanol">Espanyol</string>
-    <string name="altas">Altas</string>
-    <string name="medias">Medias</string>
-    <string name="bajas">Bajas</string>
+    <string name="altas">Altes</string>
+    <string name="medias">Mitjanas</string>
+    <string name="bajas">Baixas</string>
+
+    <string name="buscar">Cerca</string>
+    <string name="eli_especifica">Esborrar</string>
 </resources>
